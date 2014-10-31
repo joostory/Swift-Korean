@@ -19,7 +19,7 @@ Swift에서 클래스와 구조체는 여러 공통점을 가지고 있습니다
 
 더 많은 정보를 원하신다면 [Properties](), [Methods](), [Subscripts](), [Initialization](), [Extensions]() 그리고 [Protocols]() 항목을 참조하십시오.
 
-클래스는 구조체는 할 수 없는 다음과 같은 추가적인 기능들을 지원합니다 : 
+클래스는 구조체는 할 수 없는 다음과 같은 추가적인 기능들을 지원합니다 :
  * 상속은 어느 클래스가 다른 클래스의 특성을 상속받을 수 있게합니다.
  * 타입 변환(TypeCasting)은 여러분이 작동시(runtime)에 클래스의 타입을 확인하고 변환을 가능하게합니다.
  * 해제(Deinitializer)는 클래스의 인스턴스가 할당된 자원을 환원 가능케합니다.
@@ -59,7 +59,7 @@ class VideoMode {
 ```
 위의 예제는 픽셀기반 해상도를 표현하기 위한 `Resolution`이란 새로운 구조체를 정의합니다. 이 구조체는 `width`와 `height`라는 두개의 저장된 프로퍼티(stored property)를 가지고 있습니다. 저장된 프로퍼티는 클래스의 변수나 상수로서 구성되고 저장된 변수나 상수입니다. 이 두 프로퍼티는 정수값 0으로 초기화된 `int`타입으로 표현됩니다.
 
-위의 예제는 또한 비디오 화면을 위한 특정 비디오 모드를 정의하는 `VideoMode`라는 클래스를 정의합니다. 이 클래스는 네개의 변수인 저장된 프로퍼티를 가지고 있습니다. 첫번째로 `resolution`은 새로운 `Resolution`구조체의 인스턴스로 초기화됩니다. 즉 `Resolution`의 프로퍼티 타입으로 표현됩니다. 나머지 세개의 프로퍼티들은, 새로운 `VideoMode`인스턴스들은 각각 
+위의 예제는 또한 비디오 화면을 위한 특정 비디오 모드를 정의하는 `VideoMode`라는 클래스를 정의합니다. 이 클래스는 네개의 변수인 저장된 프로퍼티를 가지고 있습니다. 첫번째로 `resolution`은 새로운 `Resolution`구조체의 인스턴스로 초기화됩니다. 즉 `Resolution`의 프로퍼티 타입으로 표현됩니다. 나머지 세개의 프로퍼티들은, 새로운 `VideoMode`인스턴스들은 각각
 `interanced`는 non-interlaced 비디오라는 의미의 `false`로 초기화 되고, 재생시 frame Rate는 0.0으로 초기화 된다. 그리고 `name`이라 불리는 옵셔널 `String`값이 있다. `name` 프로퍼티는 옵셔널 타입이기 때문에 자동적으로 "`name` 프로퍼티에 값이 없다"는 의미인 `nil`로 기본값이 주어집니다.
 
 ### 클래스와 구조체 인스턴스 (Class and Structure Instances)
@@ -164,7 +164,7 @@ tenEighty.frameRate = 25.0
 다음으로 `tenEighty`를 `alsoTenEighty`라는 새로운 상수에 할당하고, `alsoTenEighty`의 프레임 레이트의 값을 수정하겠습니다.
 ```
 let alsoTenEighty = tenEighty
-asloTenEighty.frameRate = 30.0
+alsoTenEighty.frameRate = 30.0
 ```
 클래스는 참조 타입이기때문에 `tenEighty`와 `alsoTenEighty`는  사실 동일한 `VideoMode` 인스턴스를 참조하고 있습니다. 실제적으로 그들은 단지 동일한 인스턴스를 참조하는 서로 다른 이름일뿐입니다.
 
@@ -173,7 +173,7 @@ asloTenEighty.frameRate = 30.0
 println("The frameRate property of tenEighty is now \(tenEighty.frameRate)")
 // prints "The frameRate property of tenEighty is now 30.0"
 ```
-`tenEighty`와 `alsoTenEighty`가 변수가 아니라 상수로 선언되었음을 주의깊게 보십시오. `tenEighty`와 `alsoTenEighty` 상수의 그자체는 실제적으로 바뀌지 않기때문에 여러분은 여전히 `tenEighty.frameRate`과 `alsoTenEighty.frameRate`의 값을 바꿀수 있습니다. 
+`tenEighty`와 `alsoTenEighty`가 변수가 아니라 상수로 선언되었음을 주의깊게 보십시오. `tenEighty`와 `alsoTenEighty` 상수의 그자체는 실제적으로 바뀌지 않기때문에 여러분은 여전히 `tenEighty.frameRate`과 `alsoTenEighty.frameRate`의 값을 바꿀수 있습니다.
 `tenEighty`와 `alsoTenEighty` 자체는 `VideoMode` 인스턴스를 "저장"하지 않고 보이지 않는 곳에서 `VideoMode` 인스턴스를 참조만 합니다. 바뀌는것은 참조되고 있는 `VideoMode`의 `frameRate`프로퍼티이지 `VideoMode`를 참조하고 있는 상수의 값은 변하지 않습니다.
 
 ## 식별연산자(Identity Operators)
@@ -224,122 +224,4 @@ Swift의 `Array`와 `Dictionary` 형은 구조체로 구현되어 있습니다. 
 이후에 설명할 `Array`와 `Dictionary`의 복사는 구조체가 아닌 클래스로 구현된 `NSArray`와 `NSDictionary`의 복사와도 또한 다르게 작동합니다. `NSArray`와 `NSDictionary`인스턴스는 언제나 복사가 아니라 인스턴스의 레퍼런스가 전달되거나 할당됩니다.
 
 > NOTE
-밑에 설명은 배열, 딕셔너리, 문자열 그리고 다른 값의 "복제"를 설명합니다. 복제가 언급된곳에서 여러분은 여러분의 코드가 언제나 복사처럼 작동하는것을 보게 될것입니다. 하지만 Swift는 절대적으로 필요할 경우에만 실제 값의 복사가 일어납니다. Swift는 추가적인 성능적 향상을 위해서 모든 값의 복사를 관리합니다. 그리고 이러한 최적화를 선점하기위해서 대체적인 할당문의 사용을 해서는 안됩니다.
-
-## 딕셔너리의 할당과 복사 (Assignment and Copy Behavior for Dictionaries)
-여러분이 `Dictionary` 인스턴스를 상수 또는 변수에 할당할때나 함수또는 메서드에 매개변수로 전달할때 딕셔너리는 할당이되거나 함수가 호츨되는 그 시점에 복제가 됩니다. 이 과정의 자세한 사항은 [Structures and Enumerations Are Value Types]() 항목을 참조하십시오.
-
-만약 딕셔너리 인스턴스에 저장되어있는 키 또는 값이 값형식(구조체이거나 열거형)일 경우 그들 역시 할당될시나 함수의 호출시에 복제가 일어납니다. 이와는 다르게 만약 키 또는 값이 참조형식(클래스이거나 함수)일 경우에는 레퍼런스의 복제가 일어납니다. 하지만 이것은 그들이 참조하고 있는 클래스 인스턴스나 함수가 아닙니다. 이러한 딕셔너리의 키또는 값의 복제 방식은 구조체가 복사될때 구조체의 저장속성의 복제방식과 같습니다.
-
-밑의 예제에서는 네 사람의 이름과 나이를 갖는 `ages`라는 딕셔너리를 정의합니다. `copiedAges`라 명명된 새로운 변수에 이 `ages` 딕셔너리를 할당합니다. 할당후에 `ages`와 `copiedAges`는 서로 다른 딕셔너리입니다.
-```
-var ages = ["Peter": 23, "Wei": 35, "Anish": 65, "Katya": 19]
-var copiedAges = ages
-```
-이 딕셔너리의 키는 `String`타입이고 값은 `Int`타입입니다. 두 형은 Swift에서 값 타입입니다. 그러므로 딕셔너리의 복제가 일어날때 키와 값들 또한 복제됩니다.
-
-여러분은 두 딕셔너리중에 하나의 age값을 바꾸고 확인함으로써 `ages` 딕셔너리가 복제되었음을 증명할수 있습니다. 여러분이 `copiedAges` 딕셔너리의 `"Peter"`의 값을 24로 바꿔도 `ages` 딕셔너리의 반환값은 복제가 일어나기전과 동일한 23을 반환함을 알수 있습니다.
-```
-copiedAges["Peter"] = 24
-println(ages["Peter"])
-// "23" 출력
-```
-## 배열의 할당과 복제 (Assignment and Copy Behavior for Arrays)
-Swift의 배열 타입의 할당과 복제방식은 딕셔너리 타입보다 더 복잡합니다. `Array`는 여러분이 배열의 요소들을 다룰때와 복제할때 반드시 필요할 경우에만 복제를 행함으로써 C와 비슷한 성능을 제공합니다. 만약 여러분이 `Array` 인스턴스를 상수또는 변수에 할당하거나 함수 또는 메서드의 파라미터로 전달할때 배열의 요소들은 할당이 될때나 함수가 호츨될때 복제되지 않습니다. 대신 두 배열은 동일하게 정렬된 요소들의 값을 공유합니다. 여러분은 한 배열에서 요소의 값을 수정할때 다른 또 하나의 배열을 통해서 그 결과를 관찰하실 수 있습니다.
-
-배열에서 복제는 여러분이 배열의 길이를 수정할 가능성이 있는 코드를 실행할때 일어납니다. 이것은 요소의 추가, 삽입, 삭제 또는 배열요소들의 범위를 바꾸기 위해 사용되어지는 범위지정된 subscript들을 포함합니다. 배열의 복제가 일어날때의 배열 요소들의 복제 작동방식은 [Assignment and Copy Behavior for Dictionaries]()에 설명된 딕셔너리의 키, 값의 복제와 동일합니다.
-
-아래 예제는 `a`라 명명된 변수에 `Int`값들을 갖는 새로운 배열을 할당합니다. 그리고 이 배열은 또다시 `b`와 `c`로 명명된 두 변수에 할당됩니다.
-```
-var a = [1, 2, 3]
-var b = a
-var c = a
-```
-여러분은 supscript 문법을 통해 a 또는 b 또는 c 배열의 첫번째 값을 구할수 있습니다.
-```
-println(a[0])
-// 1
-println(b[0])
-// 1
-println(c[0])
-// 1
-```
-만약 여러분이 supscript 문법을 통해 배열에 새로운 값을 할당하면 `a`, `b`, `c` 세개의 배열은 새로 할당된 값을 반환할것입니다. supcript 문법을 통한 단일 값의 수정은 배열의 길이를 변화시키지 않기때문에 배열의 요소에 새로운 값을 할당할때에는 복제가 일어나지 않습니다.
-```
-a[0] = 42
-println(a[0])
-// 42
-println(b[0])
-// 42
-println(c[0])
-// 42
-```
-하지만 만약 여러분이 `a`배열에 새로운 요소를 추가한다면 여러분은 배열의 길이를 수정하게 됩니다. 이것은 Swift로 하여금 요소가 추가될시에 새로운 배열의 복제를 생성하게 합니다. 더욱이 `a`는 별도의 독립적인 원배열의 복제된 배열입니다.
-
-만약 여러분이 복제가 된후에 `a`배열의 요소를 수정하면 `a`는 여전히 원배열 요소를 참조하고 있는 `b`나 `c`와는 다른 값을 반환할것입니다.
-```
-a.append(4)
-a[0] = 777
-println(a[0])
-// 777
-println(b[0])
-// 42
-println(c[0])
-// 42
-```
-## 배열 유니크 확인 (Ensuring That an Array Is Unique)
-배열을 함수나 메소드에 전달하거나 배열의 요소들을 조작하기전에 그 배열이 유니크한지 확인하는것은 유용합니다. 배열형 변수의 메소드인 `unshare`를 호출함으로써 여러분은 배열의 유니크함을 확인하실 수 있습니다. (`unshare` 메소드는 상수 배열로는 호출할수 없습니다.)
-
-만약 여러 변수들이 동일한 배열을 참조하고 있고 여러분이 그중에 하나의 변수를 이용해서 `unshare`메소드를 호출했다면 그 배열은 복제가 됨으로써 그 변수가 그 변수만의 독립적인 배열의 복사를 가지게 됩니다. 하지만 그 변수가 그 배열에 대한 유일한 참조변수라면 복제가 일어나지 않습니다.
-
-위 예제코드의 마지막에 `b`와 `c`는 동일한 배열을 참조하고 있습니다 `b`배열 `unshare` 메소드를 호출해서 유니크한 배열을 만들도록 하겠습니다.
-```
-b.unshare()
-```
-만약 여러분이 `unshare` 메소드를 호출한뒤에 `b` 배열의 첫번째 요소의 값을 수정한다면 세 배열은 모두 다른 값을 보여줄겁니다.
-```
-b[0] = -105
-println(a[0])
-// 777
-println(b[0])
-// -105
-println(c[0])
-// 42
-```
-## 복수의 배열이 동일한 요소들을 공유하는지 검사 (Checking Whether Two Arrays Share the Same Elements)
-식별 연산자(===와 !===)를 통해 하나 이상의 배열 또는 subarray들이 동일한 저장소와 요소들을 공유하는지를 확인할수 있습니다.
-
-아래 예제에서는 "동일한(identical to)" 연산자(===)를 사용해서 배열 `b`와 `c`가 여전히 배열요소들을 공유하는지 확인합니다.
-```
-if b === c {
-    println("b and c still share the same array elements.")
-} else {
-    println("b and c now refer to two independent sets of array elements.")
-}
-// prints "b and c now refer to two independent sets of array elements."
-```
-또한 식별연산자를 사용해 subarray들이 동일한 요소를 공유하는지도 검사할수 있습니다. 아래 예제는 `b`의 동일한 subarray를 비교함으로써 그 둘이 동일한 요소를 참조하고 있음을 확인합니다.
-```
-if b[0...1] === b[0...1] {
-    println("These two subarrays share the same elements.")
-} else {
-    println("These two subarrays do not share the same elements.")
-}
-// prints "These two subarrays share the same elements."
-```
-## 강제로 배열 복제하기 (Forcing a Copy of an Array)
-배열의 `copy` 메서드를 호출함으로 강제적으로 배열의 복제를 할수 있습니다. 이 메서드는 얕은복제(shallow copy)를 행하며 복사된 요소들을 갖는 새로운 배열을 반환합니다.
-아래 예제에서 우리는 `names`라는 배열을 정의하고 7명의 이름을 저장합니다. `copiedNames`로 명명된 새로운 변수에 `names`배열의 `copy`메소드를 호출하고 결과값을 할당합니다.
-```
-var names = ["Mohsen", "Hilary", "Justyn", "Amy", "Rich", "Graham", "Vic"]
-var copiedNames = names.copy()
-```
-여러분은 둘중 하나의 배열 요소의 값을 수정하고 다른 배열에서의 요소값을 확인함으로써 `names` 배열의 복제가 제대로 이루어졌는지 확인하실수 있습니다.
-만약 여러분이 `copiedNames` 배열의 첫번째 요소의 값을 `Mohsen`에서 `"Mo"`로 수정해도 `names`배열은 여전히 복제가 일어나기전의 원래 값인 `"Mohsen"`을 반환합니다.
-```
-copiedNames[0] = "Mo"
-println(names[0])
-// "Mohsen" 출력
-```
-> NOTE
-여러분이 단지 특정배열이 존재하는 유일한 레퍼런스임을 확실시 하시고 싶으시다면 `copy`가 아닌 `unshare`메소드를 호출하십시오. `unshare`메소드는 필요한 경우가 아닐경우 배열의 복제를 생성하지 않습니다. 반면 `copy` 메소드는 그 배열이 다른 배열과 공유하고 있지 않더라도 언제나 복제 배열을 생성합니다.
+위 설명은 배열, 딕셔너리, 문자열 그리고 다른 값의 "복제"를 설명합니다. 복제가 언급된곳에서 여러분은 여러분의 코드가 언제나 복사처럼 작동하는것을 보게 될것입니다. 하지만 Swift는 절대적으로 필요할 경우에만 실제 값의 복사가 일어납니다. Swift는 추가적인 성능적 향상을 위해서 모든 값의 복사를 관리합니다. 그리고 이러한 최적화를 선점하기위해서 대체적인 할당문의 사용을 해서는 안됩니다.
