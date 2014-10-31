@@ -1,7 +1,7 @@
 # 12 속성 (Properties)
 > Translator : mango (minkyu.shim@gmail.com)
 
-속성은 특정 클래스, 구조체(structure), 혹은 열거형(Enumeration)과 값들을 연결해준다. 저장속성(Stored property)는 상수나 변수값을 인스턴스의 일부로 저장한다. 계산속성(Computed property)는 값을 그냥 저장하는 것이 아니라 계산한다. 계산속성은 클래스나 구조체 그리고 열거형에서 사용할 수 있다. 저장속성은 클래스와 구조체에서만 사용할 수 있다. 
+속성은 특정 클래스, 구조체(structure), 혹은 열거형(Enumeration)과 값들을 연결해준다. 저장속성(Stored property)는 상수나 변수값을 인스턴스의 일부로 저장한다. 계산속성(Computed property)는 값을 그냥 저장하는 것이 아니라 계산한다. 계산속성은 클래스나 구조체 그리고 열거형에서 사용할 수 있다. 저장속성은 클래스와 구조체에서만 사용할 수 있다.
 
 저장속성과 계산속성은 일반적으로 특정 타입의 인스턴스와 연결된다. 하지만, 속성이 타입 자체와 연결될수도 있는데, 이런 속성을 타입 속성(type property)라고 한다.
 
@@ -26,12 +26,12 @@ var rangeOfT hreeItems = FixedLengthRange(firstValue: 0,  length: 3)
 rangeOfThreeItems.firstValue = 6
 // the range now  represents integer val ues 6,  7,  and 8
 ```
-`FixedLengthRange` 구조체의 인스턴스들은 변수저장속성 `firstValue`와 상수저장속성 `length`를 갖는다. 위의 예제에서는 `length` 속성은 상수속성이기 때문에 구조체가 생성될때 최초로 지정되고, 이후로는 변경되지 않는다. 
+`FixedLengthRange` 구조체의 인스턴스들은 변수저장속성 `firstValue`와 상수저장속성 `length`를 갖는다. 위의 예제에서는 `length` 속성은 상수속성이기 때문에 구조체가 생성될때 최초로 지정되고, 이후로는 변경되지 않는다.
 
 ### 상수 구조체 인스턴스의 저장속성 (Stored Properties of Constant Structure Instances)
 
 
-상수로 선언된 구조체 인스턴스의 속성들은 변수속성이더라도 수정되지 않는다. 
+상수로 선언된 구조체 인스턴스의 속성들은 변수속성이더라도 수정되지 않는다.
 
 ```
 let rangeOfFourItems = FixedLengthRange(firstValue: 0, length: 4)
@@ -45,17 +45,17 @@ rangeOfFourItems.firstValue = 6
 
 ### 게으른 저장속성(Lazy Stored Property)
 
-게으른 저장속성은 그 초기값이 최초로 사용되기전까지는 계산되지 않는다. 프로그래머는 선언시에 `@lazy` attribute라고 써줌으로써 게으른 저장속성을 표시할 수 있다. 
+게으른 저장속성은 그 초기값이 최초로 사용되기전까지는 계산되지 않는다. 프로그래머는 선언시에 `@lazy` attribute라고 써줌으로써 게으른 저장속성을 표시할 수 있다.
 
 > NOTE
-게으론 속성은 초기화(initialization)가 끝난 뒤에도 초기값을 꺼낼 수 없을지도 모르기 때문에 언제나 `var` 키워드를 통해 변수로 선언되어야한다. 반면, 상수 속성은 초기화가 끝나기 전에 반드시 값을 가져야하기 때문에 게으른 속성으로 선언될 수 없다. 
+게으론 속성은 초기화(initialization)가 끝난 뒤에도 초기값을 꺼낼 수 없을지도 모르기 때문에 언제나 `var` 키워드를 통해 변수로 선언되어야한다. 반면, 상수 속성은 초기화가 끝나기 전에 반드시 값을 가져야하기 때문에 게으른 속성으로 선언될 수 없다.
 
-게으른 속성은 속성의 초기값이 객체의 초기화가 끝날때까지도 값을 알 수 없는 외부 변수에 의존하고 있을때 유용하다. 게으른 속성은 속성의 값이 매우 복잡하거나 리소스를 많이 사용하는(expensive) 계산이어서 필요한 경우가 아니면 수행되지 말아야 하는 경우에도 역시 유용하다. 
+게으른 속성은 속성의 초기값이 객체의 초기화가 끝날때까지도 값을 알 수 없는 외부 변수에 의존하고 있을때 유용하다. 게으른 속성은 속성의 값이 매우 복잡하거나 리소스를 많이 사용하는(expensive) 계산이어서 필요한 경우가 아니면 수행되지 말아야 하는 경우에도 역시 유용하다.
 
-아래 예시는 복잡한 클래스의 불필요한 초기화를 피하기 위해 게으른 저장속성을 사용하고 있다. 예시된 코드는 `DataImporter` 클래스와 `DataManager` 클래스 정의의 일부분이다. 
+아래 예시는 복잡한 클래스의 불필요한 초기화를 피하기 위해 게으른 저장속성을 사용하고 있다. 예시된 코드는 `DataImporter` 클래스와 `DataManager` 클래스 정의의 일부분이다.
 
 ```
-cclass DataImporter {
+class DataImporter {
     /*
     DataImporter is a class to import data from an external file.
     The class is assumed to take a non-trivial amount of time to initialize.
@@ -63,25 +63,25 @@ cclass DataImporter {
     var fileName = "data.txt"
     // the DataImporter class would provide data importing functionality here
 }
- 
+
 class DataManager {
-    @lazy var importer = DataImporter()
-    var data = String[]()
+    lazy var importer = DataImporter()
+    var data = [String]()
     // the DataManager class would provide data management functionality here
 }
- 
+
 let manager = DataManager()
-manager.data += "Some data"
-manager.data += "Some more data"
+manager.data.append("Some data")
+manager.data.append("Some more data")
 // the DataImporter instance for the importer property has not yet been created
 ```
 `DataManager` 클래스는 `data`라는 저장속성을 가지는데, 이 `data` 저장속성은 새로운 `String` 값들로 이루어진 빈 배열로 초기화된다. 나머지 기능들은 코드에 드러나지 않지만, `DataManager` 클래스의 목적은 이 `String` 데이터의 배열을 외부에서 접근하여 사용하도록 관리하는 것이다.
 
-`DataManager` 클래스의 기능 중 하나는 파일에서 데이터를 가져오는 것이다. 이 기능은 초기화하는데 많은 시간이 드는 `DataImporter` 클래스가 제공한다. 이것은 `DataImporter` 인스턴스가 초기화될때 화일로부터 데이터를 읽어 메모리로 로드해야하기 때문이라고 가정하자. 
+`DataManager` 클래스의 기능 중 하나는 파일에서 데이터를 가져오는 것이다. 이 기능은 초기화하는데 많은 시간이 드는 `DataImporter` 클래스가 제공한다. 이것은 `DataImporter` 인스턴스가 초기화될때 화일로부터 데이터를 읽어 메모리로 로드해야하기 때문이라고 가정하자.
 
-`DataManage`r 인스턴스가 데이터를 관리할 때 파일에서 읽어오지 않는 경우도 있을 수 있다. 이런 경우엔 `DataManager`가 생성될때, `DataImporter` 인스턴스를  생성하는 것은 불필요하다. 대신에, `DataImporter` 인스턴스를 최초로 사용할때 생성되도록 하는 것이 더 좋다.
+`DataManager` 인스턴스가 데이터를 관리할 때 파일에서 읽어오지 않는 경우도 있을 수 있다. 이런 경우엔 `DataManager`가 생성될때, `DataImporter` 인스턴스를  생성하는 것은 불필요하다. 대신에, `DataImporter` 인스턴스를 최초로 사용할때 생성되도록 하는 것이 더 좋다.
 
-게으른 속성(`@lazy`)으로 표시되어있기 때문에, `DataImporte`r 인스턴스인 `DataManager`의 `importer` 속성은 `fileName` 속성을 조회할 때와 같은 최초의 접근시 생성된다.
+게으른 속성(`lazy`)으로 표시되어있기 때문에, `DataImporter` 인스턴스인 `DataManager`의 `importer` 속성은 `fileName` 속성을 조회할 때와 같은 최초의 접근시 생성된다.
 ```
 println(manager.importer.fileName)
 // the DataImporter instance for the importer property has now been created
@@ -90,13 +90,13 @@ println(manager.importer.fileName)
 
 ### 저장속성과 인스턴스 변수 (Stored Properties and Instance Variables)
 
-Objective-C에 경험이 있는 프로그래머라면, 클래스 인스턴스에 값이나 참조를 저장하는 두가지 방법을 알고 있을 것이다. 속성과 별도로, 프로그래머는 인스턴스 변수를 속성에 저장된 값들의 저장소(backing store)로 활용할 수 있다. 
+Objective-C에 경험이 있는 프로그래머라면, 클래스 인스턴스에 값이나 참조를 저장하는 두가지 방법을 알고 있을 것이다. 속성과 별도로, 프로그래머는 인스턴스 변수를 속성에 저장된 값들의 저장소(backing store)로 활용할 수 있다.
 
-Swift는 위의 개념들을 하나의 속성 선언에 통합시켰다. 스위프트에서 속성은 (Objective-C와 달리) 대응되는 인스턴스 변수가 없고, 속성의 저장소에도 직접 접근할 수 없다. 이러한 접근방식으로 Swift는 서로 다른 맥락에서 하나의 값이 접근되는 방식에 대한 혼란을 줄이고, 속성의 선언을 하나의 정의문에 단순화 시켰다. 
+Swift는 위의 개념들을 하나의 속성 선언에 통합시켰다. 스위프트에서 속성은 (Objective-C와 달리) 대응되는 인스턴스 변수가 없고, 속성의 저장소에도 직접 접근할 수 없다. 이러한 접근방식으로 Swift는 서로 다른 맥락에서 하나의 값이 접근되는 방식에 대한 혼란을 줄이고, 속성의 선언을 하나의 정의문에 단순화 시켰다.
 
 ## 계산속성 (Computed Properties)
 
-저장속성에 더해서, 클래스, 구조체 그리고 열거체에는 계산속성(Computed properties)를 정의할 수 있다. 계산속성은 실제로 값을 저장하지는 않고, 다른 속성이나 값들이 간접적으로 접근하여 값을 조회하거나 수정할 수 있는 getter와 선택적인 setter를 제공한다. 
+저장속성에 더해서, 클래스, 구조체 그리고 열거체에는 계산속성(Computed properties)를 정의할 수 있다. 계산속성은 실제로 값을 저장하지는 않고, 다른 속성이나 값들이 간접적으로 접근하여 값을 조회하거나 수정할 수 있는 getter와 선택적인 setter를 제공한다.
 ```
 struct Point {
     var x = 0.0, y = 0.0
@@ -126,15 +126,15 @@ square.center = Point(x: 15.0, y: 15.0)
 println("square.origin is now at (\(square.origin.x), \(square.origin.y))")
 // prints "square.origin is now at (10.0, 10.0)"
 ```
-위 예제는 기하학의 도형을 다루기 위한 세개의 구조체를 정의하고 있다. 
+위 예제는 기하학의 도형을 다루기 위한 세개의 구조체를 정의하고 있다.
 
 * `Point` 구조체는 `x`,`y` 좌표를 가진다.
 * `Size` 구조체는 `width`(너비)와 `height`(높이)를 가진다.
 * `Rect` 구조체는 `origin`(시작점)과 `size`(크기)로 사각형을 정의한다.
 
-`Rect` 구조체는 `center`라는 이름의 계산속성도 제공한다. `Rect` 구조체의 현재 중점(center position)은 언제나 `origin`과 `size`에 의해 결정된다. 그러므로, 프로그래머는 중점을 명시적인 `Point` 값으로 저장하지 않아도 된다. 대신에, `Rect` 구조체는 `center`라는 이름의 저장속성을 위한 맞춤 getter와 setter를 제공한다. 프로그래머는 이 `center` 계산속성을 마치 실제 저장속성인 것처럼 사용할 수 있다. 
+`Rect` 구조체는 `center`라는 이름의 계산속성도 제공한다. `Rect` 구조체의 현재 중점(center position)은 언제나 `origin`과 `size`에 의해 결정된다. 그러므로, 프로그래머는 중점을 명시적인 `Point` 값으로 저장하지 않아도 된다. 대신에, `Rect` 구조체는 `center`라는 이름의 저장속성을 위한 맞춤 getter와 setter를 제공한다. 프로그래머는 이 `center` 계산속성을 마치 실제 저장속성인 것처럼 사용할 수 있다.
 
-이어지는 코드에서는 `square`란 이름의 새로운 `Rect` 변수가 생성된다. `square` 변수는 시작점 (0,0)과 너비 10 ,높이 10으로 초기화된다. 이 square는 아래 도표의 파란색 사각형으로 표시된다. 
+이어지는 코드에서는 `square`란 이름의 새로운 `Rect` 변수가 생성된다. `square` 변수는 시작점 (0,0)과 너비 10 ,높이 10으로 초기화된다. 이 square는 아래 도표의 파란색 사각형으로 표시된다.
 
 `square` 변수의 `center` 속성은 마침표(.)를 통해 `square.center` 처럼 접근할 수 있다. 이렇게 접근할 경우, 현재 속성값을 조회하는 getter가 호출된다. 이 getter는 실재하는 속성값을 반환하는게 아니라, 계산을 통해서 현재 사각형의 중점에 해당하는 새로운 `Point` 값을 반환한다. 위에서 보듯이, getter는 정확하게 (5,5) 좌표를 반환한다.
 
@@ -165,10 +165,10 @@ struct AlternativeRect {
 
 ### 읽기전용 계산속성 (Read-Only Computed Properties)
 
-getter만 있고, setter가 없는 계산속성은 읽기전용 계산속성(read-only computed property)라 부른다. 읽기전용 계산속성은 언제나 값을 반환하며, 마침표(.)를 통해 접근할 수 있지만, 다른 값으로 설정할 수는 없다. 
+getter만 있고, setter가 없는 계산속성은 읽기전용 계산속성(read-only computed property)라 부른다. 읽기전용 계산속성은 언제나 값을 반환하며, 마침표(.)를 통해 접근할 수 있지만, 다른 값으로 설정할 수는 없다.
 
 > NOTE
-읽기전용을 포함한 모든 계산속성은 반드시 `var` 키워드로 선언되어야한다. 왜냐하면, 계산속성의 값은 고정되지 않았기 때문이다. `let` 키워드는 초기화시 한번 지정되면 변경할 수 없다는 것을 표시하기 위해 상수속성 선언에만 사용해야한다. 
+읽기전용을 포함한 모든 계산속성은 반드시 `var` 키워드로 선언되어야한다. 왜냐하면, 계산속성의 값은 고정되지 않았기 때문이다. `let` 키워드는 초기화시 한번 지정되면 변경할 수 없다는 것을 표시하기 위해 상수속성 선언에만 사용해야한다.
 
 읽기전용 계산속성의 선언은 단순히 `get` 키워드와 중괄호를 제거하면 된다. (역자 주 : 엄밀하게 말하자만, set 부분은 아예 없고, get 블록 내부의 코드가 한단계 바깥으로 나오는 형상)
 ```
@@ -182,7 +182,7 @@ let fourByFiveByTwo = Cuboid(width: 4.0, height: 5.0, depth: 2.0)
 println("the volume of fourByFiveByTwo is \(fourByFiveByTwo.volume)")
 // prints "the volume of fourByFiveByTwo is 40.0"
 ```
-위 예제코드는 Cuboid란 이름의 새로운 구조체를 정의합니다. Cuboid는 너비, 높이, 그리고 깊이를 가진 3D 직육면체 상자를 표시합니다. 이 구조체는 volume이라는 읽기전용 계산속성을 제공합니다. volume 은 현재 cuboid의 면적을 계산하여 반환합니다. 면적이 변경되면 어떤 너비, 높이, 그리고 깊이값으로 변경되어야하는지 모호하기 때문에 면적을 변경하는 것은 말이 되지 않습니다. 그럼에도 불구하고, Cuboid 구조체를 사용하는 프로그래머에게 계산된 면적으로 제공하는 읽기전용 계산속성을 제공하는 것은 유용할 것입니다. 
+위 예제코드는 Cuboid란 이름의 새로운 구조체를 정의합니다. Cuboid는 너비, 높이, 그리고 깊이를 가진 3D 직육면체 상자를 표시합니다. 이 구조체는 volume이라는 읽기전용 계산속성을 제공합니다. volume 은 현재 cuboid의 면적을 계산하여 반환합니다. 면적이 변경되면 어떤 너비, 높이, 그리고 깊이값으로 변경되어야하는지 모호하기 때문에 면적을 변경하는 것은 말이 되지 않습니다. 그럼에도 불구하고, Cuboid 구조체를 사용하는 프로그래머에게 계산된 면적으로 제공하는 읽기전용 계산속성을 제공하는 것은 유용할 것입니다.
 
 ## 속성감시자 (Property Observers)
 속성 감시자는 속성값 변경를 감시하고 대응한다. 속성 감시자는 속성값이 설정될 때마다 호출되는데 새 값이 현재값과 동일하다라고 하더라도 호출된다.
@@ -299,7 +299,7 @@ class SomeClass {
 ```
 println(SomeClass.computedTypeProperty)
 // prints "42"
- 
+
 println(SomeStructure.storedTypeProperty)
 // prints "Some value."
 SomeStructure.storedTypeProperty = "Another value."
