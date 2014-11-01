@@ -201,13 +201,13 @@ println("Item \(index + 1): \(value)")
 배열의 초기화 문법을 이용하면 초기값 할당 없이 특정 타입을 가진 빈 배열을 만들 수 있다:
 
 ```
-var someInts = Int[]()
-println("someInts is of type Int[] with \(someInts.count) items.")
+var someInts = [Int]()
+println("someInts is of type [Int] with \(someInts.count) items.")
 
-// prints "someInts is of type Int[] with 0 items."
+// prints "someInts is of type [Int] with 0 items."
 ```
 
-`someInts` 변수의 타입은 `Int[]`로 추정 가능한데, 이것은 `Int[]`로 초기화를 했기 때문이다.
+`someInts` 변수의 타입은 `[Int]`로 추정 가능한데, 이것은 `[Int]`로 초기화를 했기 때문이다.
 
 또한 만약 컨텍스트 상에서 함수의 인자라든가 이미 타입 선언이 된 변수 혹은 상수라든가 하는 식으로 해서 이미 타입 정보를 갖고 있다면, 빈 배열을 곧바로 빈 배열 표현식을 이용하여 만들 수 있다. 빈 배열 표현식은 `[]`와 같이 대괄호만을 이용한다:
 
@@ -215,14 +215,14 @@ println("someInts is of type Int[] with \(someInts.count) items.")
 someInts.append(3)
 // someInts now contains 1 value of type Int
 someInts = []
-// someInts is now an empty array, but is still of type Int[]
+// someInts is now an empty array, but is still of type [Int]
 ```
 
 스위프트의 `Array` 타입도 특정 크기와 기본 값을 갖는 배열을 만들 수 있는 생성자를 제공한다. 배열에 들어갈 수 있는 값의 갯수(`count` 인자)와 기본 값(`repeatedValue` 인자)을 생성자에 제공하여 배열을 만들 수 있다:
 
 ```
-var threeDoubles = Double[](count: 3, repeatedValue: 0.0)
-// threeDoubles is of type Double[], and equals [0.0, 0.0, 0.0]
+var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+// threeDoubles is of type [Double], and equals [0.0, 0.0, 0.0]
 ```
 
 생성자를 사용할 때 기본 값에서 타입을 추정하기 때문에 배열 생성시 굳이 타입 지정을 할 필요가 없다:
@@ -288,7 +288,7 @@ var airports = ["TYO": "Tokyo", "DUB": "Dublin"]
 
 ### 딕셔너리의 접근 및 수정 Accessing and Modifying a Dictionary
 
-딕셔너리는 메소드와 프로퍼티를 통해 접근과 수정이 가능하다. 혹은 subscript 문법을 사용할 수도 있다. 배열과 같이 딕셔너리 안에 값이 몇 개나 있는지를 확인하기 위해 읽기 전용 속성인 `count` 프로퍼티를 사용한다: 
+딕셔너리는 메소드와 프로퍼티를 통해 접근과 수정이 가능하다. 혹은 subscript 문법을 사용할 수도 있다. 배열과 같이 딕셔너리 안에 값이 몇 개나 있는지를 확인하기 위해 읽기 전용 속성인 `count` 프로퍼티를 사용한다:
 
 ```
 println("The dictionary of airports contains \(airports.count) items.")
@@ -351,7 +351,7 @@ if let removedValue = airports.removeValueForKey("DUB") {
 // prints "The removed airport's name is Dublin International."
 ```
 
-### 딕셔너리에서 반복문 사용하기 Iterating Over a Dictionary 
+### 딕셔너리에서 반복문 사용하기 Iterating Over a Dictionary
 
 `for-in` 반복문을 사용하면 딕셔너리 안의 모든 키/밸류 쌍에 접근할 수 있다. 딕셔너리 각각의 아이템은 `(key, value)` 튜플을 반환하고, 반복문을 돌리는 도중 이 튜플의 멤버들을 분리하여 임시 상수 혹은 변수에 할당하여 사용할 수 있다:
 
@@ -396,7 +396,7 @@ let airportNames = Array(airports.values)
 스위프트의 `Dictionary` 타입은 순서를 정하지 않는 컬렉션이다. 키, 밸류, 키/밸류 쌍의 순서는 반복문을 돌릴때 정해지지 않는다.
 
 
-### 빈 딕셔너리 만들기 Creating an Empty Dictionary 
+### 빈 딕셔너리 만들기 Creating an Empty Dictionary
 
 배열과 마찬가지로 초기화 문법을 이용하여 비어있는 딕셔너리 타입을 만들 수 있다:
 
@@ -430,6 +430,5 @@ namesOfIntegers = [:]
 
 스위프트가 제공하는 `Array` 타입의 변경 가능성은 또한 어떻게 배열 인스턴스가 생성되고 변경되는지에 대해서도 영향을 미친다. 더 자세한 내용은 [컬렉션 타입에서 할당과 복사 형태]() 섹션을 참조하도록 하자.
 
-> NOTE 
+> NOTE
 컬렉션의 크기를 변경시킬 필요가 없는 경우에는 불변성 컬렉션을 만드는 것이 좋다. 이렇게 함으로써 스위프트 컴파일러가 컬렉션의 퍼포먼스에 최적화를 시킬 수 있다.
-

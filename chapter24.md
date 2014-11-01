@@ -25,15 +25,15 @@
     swapTwoInts(&someInt, &anotherInt)
     println("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
     // prints "someInt is now 107, and anotherInt is now 3"
-```    
+```
 해당 `swapTwoInts` 함수는 유용하지만, 오직 `Int` 값만 사용할 수 있습니다. 만약 두 개의 `String`값이나, 두 개의 `Double` 값을 바꾸려면 `swapTwoStrings`이나 `swapTwoDoubles`같은 함수를 더 작성해야 합니다.
-```    
+```
         func swapTwoStrings(inout a: String, inout b: String) {
         let temporaryA = a
         a = b
         b = temporaryA
     }
-     
+
     func swapTwoDoubles(inout a: Double, inout b: Double) {
         let temporaryA = a
         a = b
@@ -71,7 +71,7 @@ func swapTwoValues<T>(inout a: T, inout b: T)
     var anotherInt = 107
     swapTwoValues(&someInt, &anotherInt)
     // someInt is now 107, and anotherInt is now 3
-     
+
     var someString = "hello"
     var anotherString = "world"
     swapTwoValues(&someString, &anotherString)
@@ -122,7 +122,7 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 여기 `Int` 값 스택으로 어떻게 비-제네릭 버전의 스택을 쓰는지 보여줍니다.
 ```
     struct IntStack {
-        var items = Int[]()
+        var items = [Int]()
         mutating func push(item: Int) {
             items.append(item)
         }
@@ -138,7 +138,7 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 여기에 같은 코드의 제네릭 버전이 있습니다:
 ```
     struct Stack<T> {
-        var items = T[]()
+        var items = [T]()
         mutating func push(item: T) {
             items.append(item)
         }
@@ -155,7 +155,7 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 - `T` 타입이 되어야 하는 `item`이라는 하나의 패러미터를 가지는 `push`라는 메서드.
 - `T` 타입 값을 반환하는 `pop` 메서드.
 
-초기화 문법으로 새 인스턴스를 만들 때, 개별 스택의 실제 타입을 타입 이름 뒤에 오는 꺽쇠 기호 안에 써서 `Array`나 `Dictionary`와 비슷하게 `Stack`의 인스턴스를 만들 수 있습니다. 
+초기화 문법으로 새 인스턴스를 만들 때, 개별 스택의 실제 타입을 타입 이름 뒤에 오는 꺽쇠 기호 안에 써서 `Array`나 `Dictionary`와 비슷하게 `Stack`의 인스턴스를 만들 수 있습니다.
 ```
     var stackOfStrings = Stack<String>()
     stackOfStrings.push("uno")
@@ -177,7 +177,7 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 
 ![https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/stackPoppedOneString_2x.png](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/stackPoppedOneString_2x.png)
 
-`Stack`은 제네릭 타입이므로 `Array`나 `Dictionary`와 비슷하게 Swift의 어떤 타입과도 같이 사용될 수 있습니다. 
+`Stack`은 제네릭 타입이므로 `Array`나 `Dictionary`와 비슷하게 Swift의 어떤 타입과도 같이 사용될 수 있습니다.
 
 
 
@@ -272,7 +272,7 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 프로토콜을 정의할 때, 하나 이상의 *연관 타입(associated types)*을 정의하는 것이 유용할 때가 있습니다. 연관 타입은 프로토콜의 일부로 사용되는 placeholder 이름(또는 별칭(*alias*))을 제공합니다. 해당 연관 타입은 프로토콜이 실제로 채용(adopt)될때까지 특정되지 않습니다. 연관 타입은 `typealias` 키워드로 지정됩니다.
 
 ### 연관 타입 활용 (Associated Types in Action)
-여기에 `ItemType`이라는 연관 타입을 선언(declare)하는 `Container`라는 프로토콜 예시가 있습니다. 
+여기에 `ItemType`이라는 연관 타입을 선언(declare)하는 `Container`라는 프로토콜 예시가 있습니다.
 ```
     protocol Container {
         typealias ItemType
@@ -295,11 +295,11 @@ Swift는 제네릭 함수는 물론, *제네릭 타입*도 제공합니다. 이�
 
 이를 위해, `Container` 프로토콜은 `ItemType`이라는 연관 타입을 선언합니다. 이는 `typealias ItemType`로 쓰여집니다. 프로토콜은 `ItemType`이 어느 타입에 대한 별칭(alias)인지는 정의하지 않습니다 — 그 정보는 준수하는(conforming) 타입이 제공해야 합니다. 그럼에도 불구하고, `ItemType` 별칭은 모든 `Container`에 기대되는 행동양식을 강제하기 위해  `Container` 안에 있는 아이템들을 참조할 수 있는 방법을 제공하고, `append` 메서드와 첨자에 사용되는 타입을 정의합니다.
 
-여기에 예전에 만든 비-제네릭 버전의 `IntStack` 타입이 `Container` 프로토콜을 준수하는 버전이 있습니다. 
+여기에 예전에 만든 비-제네릭 버전의 `IntStack` 타입이 `Container` 프로토콜을 준수하는 버전이 있습니다.
 ```
     struct IntStack: Container {
         // original IntStack implementation
-        var items = Int[]()
+        var items = [Int]()
         mutating func push(item: Int) {
             items.append(item)
         }
@@ -329,7 +329,7 @@ Swift의 타입 추론 기능 덕분에, 실제로는 `ItemType`라는 구체 �
 ```
     struct Stack<T>: Container {
         // original Stack<T> implementation
-        var items = T[]()
+        var items = [T]()
         mutating func push(item: T) {
             items.append(item)
         }
@@ -364,7 +364,7 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
 
 ##  Where절 (Where Clauses)
 
-[타입 제약][Type Constraints]에 설명된 타입 제약은 제네릭 함수나 타입에 사용된 타입 패러미터에 요구사항을 정의하게 해줍니다. 
+[타입 제약][Type Constraints]에 설명된 타입 제약은 제네릭 함수나 타입에 사용된 타입 패러미터에 요구사항을 정의하게 해줍니다.
 
 [Type Constraints]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html#//apple_ref/doc/uid/TP40014097-CH26-XID_244
 
@@ -378,22 +378,22 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
         C1: Container, C2: Container
         where C1.ItemType == C2.ItemType, C1.ItemType: Equatable>
         (someContainer: C1, anotherContainer: C2) -> Bool {
-            
+
             // check that both containers contain the same number of items
             if someContainer.count != anotherContainer.count {
                 return false
             }
-            
+
             // check each pair of items to see if they are equivalent
             for i in 0..someContainer.count {
                 if someContainer[i] != anotherContainer[i] {
                     return false
                 }
             }
-            
+
             // all items match, so return true
             return true
-            
+
     }
 ```
 이 함수는 `someContainer`와 `anotherContainer`라 불리는 두 개의 인수를 받습니다. `someContainer` 인수는 `C1`의 타입이고, `anotherContainer` 인수는 `C2`의 타입입니다. `C1`과 `C2` 모두 함수가 호출될때 밝혀질 두 컨테이너 타입을 위한 placeholder 타입 패러미터입니다. 함수의 타입 패러미터 리스트는 두 타입 패러미터 목록에 다음 요구사항들을 추가합니다.
@@ -401,9 +401,9 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
 - `C1`은 반드시 `Container` 프로토콜을 준수해야 합니다. (예: `C1: Container`)
 - `C2`도 반드시 `Container` 프로토콜을 준수해야 합니다. (예: `C2: Container`)
 - `C1`의 `ItemType`은 `C2`의 `ItemType`과 같아야 합니다. (예: `C1.ItemType == C2.ItemType`)
-- `C1`의 `ItemType`은 `Equatable` 프로토콜을 준수해야 합니다. (예: `C1.ItemType: Equatable`) 
+- `C1`의 `ItemType`은 `Equatable` 프로토콜을 준수해야 합니다. (예: `C1.ItemType: Equatable`)
 
-세번째와 네번째 요구사항들은 where절의 일부로 정의되었고, `where` 키워드 뒤에 함수의 타입 패러미터 목록의 일부로 따라옵니다. 
+세번째와 네번째 요구사항들은 where절의 일부로 정의되었고, `where` 키워드 뒤에 함수의 타입 패러미터 목록의 일부로 따라옵니다.
 
 이 요구사항들은:
 
@@ -414,7 +414,7 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
 
 를 의미합니다. 세번째와 네번째 요구사항의 조합은 `anotherContainer`의 아이템들 또한 `!=` 연산자로 검사될 수 있음을 의미하는데, 왜냐면 그것들이 `someContainer`의 아이템 타입과 동일하기 때문입니다.
 
-이 요구사항들은 두 개의 컨테이너 타입이 다른 경우에도 `allItemsMatch` 함수가 두 컨테이너들을 비교할 수 있게 해줍니다. 
+이 요구사항들은 두 개의 컨테이너 타입이 다른 경우에도 `allItemsMatch` 함수가 두 컨테이너들을 비교할 수 있게 해줍니다.
 
 `allItemsMatch` 함수는 컨테이너들이 같은 수의 아이템을 갖고 있는지부터 검사하는데, 아이템 수가 다르면 같다고 볼 수가 없기 때문입니다. 이 경우 함수는 `false`를 반환합니다.
 
@@ -428,9 +428,9 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
     stackOfStrings.push("uno")
     stackOfStrings.push("dos")
     stackOfStrings.push("tres")
-     
+
     var arrayOfStrings = ["uno", "dos", "tres"]
-     
+
     if allItemsMatch(stackOfStrings, arrayOfStrings) {
         println("All items match.")
     } else {
@@ -440,13 +440,3 @@ Swift의 `Array` 타입은 이미 `append` 메서드와 `count` 속성, 그리�
 ```
 
 위의 예시는 `String` 값들을 저장하기 위한 `Stack` 인스턴스를 만들, 새 개의 문자열을 스택에 추가(push)합니다. 위 예시는 스택과 동일한 세 문자열을 포함하는 리터럴로 초기화된 `Array` 인스턴스도 만듭니다. 스택과 배열은 다른 타입이지만, 이들은 둘 다 `Container` 프로토콜을 준수하며, 같은 타입의 아이템들을 가집니다. 그러므로 이 두 컨테이너들을 인수로 사용해 `allItemsMatch` 함수를 호출할 수 있습니다. 위의 예시에서는 `allItemsMatch` 함수가 두 컨테이너 내의 모든 아이템들이 같다고 정확하게 보고합니다.
-
-
-
-
-
-
-
-
-
-

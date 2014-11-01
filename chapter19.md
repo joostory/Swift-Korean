@@ -2,7 +2,7 @@
 > Translator : 허혁 (hyukhur@gmail.com)
 
 옵셔널 체인(Optional chaining)란 `nil`이 될 수도 있는 옵션(options)을 가진 프로퍼티(property), 메소드(method), 서브 스크립트 (subscript)에 질의하고 호출하는 프로세스를 말한다.  만약 어떤 옵션이 값을 가진다면 프로퍼티, 메소드, 서브스크립트 호출은 성공하고 옵션이 `nil`이면, 프로퍼티, 메소드, 서브스크립트 호출은 `nil`을 반환하게 된다.
-여러개의 질의도 함께 엮일 수 있으며, 만약 체인(chaining) 중간의 어떤 링크가 `nil`이라면 조용하게 전체 체인은 실패한다. 
+여러개의 질의도 함께 엮일 수 있으며, 만약 체인(chaining) 중간의 어떤 링크가 `nil`이라면 조용하게 전체 체인은 실패한다.
 
 >NOTE
 스위프트(Swift)의 옵셔널 체인이 오브젝티브씨(Objective-C)에 있는 `nil`에 메시지 보내기와 유사하다. 그러나, 모든 타입(any type)에서 동작하고, 성공, 실패 여부를 확인할 수 있다는 점에서 차이가 있다.
@@ -10,7 +10,7 @@
 ## 강제 랩핑 해제(Forced Unwrapping) 대안으로써 옵셔널 체인
 호출하고자 하는 프로퍼티, 메소드, 서브스크립트의 옵셔널 값(optional value)이 `nil` 아닐 때 옵션값 뒤에 물음표(`?`)를 두어 옵셔널 체인을 명시 할 수 있다. 이것은 옵션널 값 뒤에 느낌표(`!`)를 두어 그 값을 강제로 랩핑 해제하는 것과 유사하다. 가장 주요한 차이점은 옵셔널 체인은 옵션이 `nil`일 때 자연스럽게 실패한다는 것이고, 강제 랩핑 해제는 옵션이 `nil`인 경우 런타임 에러가 발생한다.
 옵셔널 체인이 `nil` 값에도 호출할 수 있다는 사실을 반영하기 위해 옵셔널 체인 호출 결과는 항상 옵션널 값이다. 비록 질의한 프로퍼티, 메소드, 서브스크립트가 항상 옵션널 값이 아닌 결과를 도출해도 그렇다. 이 옵션널 반환 값을 사용해서 옵셔널 체인 호출이 성공했는지 ( 반환된 옵션이 값을 가지는 ) 체인 중간의 `nil` 값 ( 옵션 반환값이 `nil` ) 때문에 실패했는지를  확인할 수 있다.
-구체적으로, 옵셔널 체인 호출 결과는 옵션으로 감싸여져 있음에도 기대한 반환값과 동일한 타입이다. 일반적으로 `Int`를 반환하는 프로퍼티는 옵셔널 체인에 따라 접근이 가능할때는 `Int?`를 반환할 것이다. 
+구체적으로, 옵셔널 체인 호출 결과는 옵션으로 감싸여져 있음에도 기대한 반환값과 동일한 타입이다. 일반적으로 `Int`를 반환하는 프로퍼티는 옵셔널 체인에 따라 접근이 가능할때는 `Int?`를 반환할 것이다.
 다은 몇몇 코드 조각은 옵셔널 체인이 어떻게 강제 랩핑 해제와 다르고 성공 여부 확인을 가능케 하는지 보여준다.
 먼저 `Person`과 `Residence`라는 클래스를 정의하자.
 ```
@@ -31,7 +31,7 @@ let jone = Person()
 ```
 let roomCount = john.residence.numberOfRooms
 ```
-위 코드는 `john.residence`가 `nil`이 아닌 값을 성공하며 방 갯수에 적절한 숫자를 담고 있는 Int 값에 `roomCount`를 설정할 것이다. 그러나 이 코드는 위에 보여지는 것처럼 `residence`가 `nil`이라면 항상 런타임 에러를 유발 시킨다. 
+위 코드는 `john.residence`가 `nil`이 아닌 값을 성공하며 방 갯수에 적절한 숫자를 담고 있는 Int 값에 `roomCount`를 설정할 것이다. 그러나 이 코드는 위에 보여지는 것처럼 `residence`가 `nil`이라면 항상 런타임 에러를 유발 시킨다.
 옵셔널 체인은 `numberOfRooms`값에 접근하는데 대안법을 제공한다. 옵셔널 체인을 사용하기 위해 느낌표 자리에 물음표를 사용하면 된다.
 ```
 if let roomCount = john.residence?.numberOfRooms {
@@ -68,10 +68,10 @@ class Person {
     var residence: Residence?
 }
 ```
-`Residence` 클래스는 이전보다 조금 복잡해졌다. 이번에는 `Residence` 클래스에 `Room[]` 타입의 빈 배열로 초기화된 `rooms`라는 변수 프로퍼티를 선언한다.
+`Residence` 클래스는 이전보다 조금 복잡해졌다. 이번에는 `Residence` 클래스에 `[Room]` 타입의 빈 배열로 초기화된 `rooms`라는 변수 프로퍼티를 선언한다.
 ```
 class Residence {
-    var rooms = Room[]()
+    var rooms = [Room]()
     var numberOfRooms: Int {
     return rooms.count
     }
@@ -166,7 +166,7 @@ if let firstRoomName = john.residence?[0].name {
 ```
 
 이 서브스크립트 호출 속에 있는 옵셔널 체인 물음표는 `john.residence`바로 뒤, 서브스크립트 꺽은 괄호 전에 존재해야한다. 왜냐하면, `john.residence`가 옵셔널 체인을 꾀할 옵션값이기 때문이다.
-만약, `john.residence`에 `rooms`배열에 한개 이상의 `Room`인스턴스도 같이 실제 `Residence`를 만들어서 할당한다면 옵셔널 체인을 통해 `rooms`배열안의 실제 아이템에 접근하기 위해서 `Residence`서브스크립트를 사용할 수 있다. 
+만약, `john.residence`에 `rooms`배열에 한개 이상의 `Room`인스턴스도 같이 실제 `Residence`를 만들어서 할당한다면 옵셔널 체인을 통해 `rooms`배열안의 실제 아이템에 접근하기 위해서 `Residence`서브스크립트를 사용할 수 있다.
 ```
 let johnsHouse = Residence()
 johnsHouse.rooms += Room(name: "Living Room")
@@ -235,4 +235,3 @@ if let upper = john.residence?.address?.buildingIdentifier()?.uppercaseString {
 ```  
 >NOTE
 위 예제에서 둥근 괄호 다음에 옵셔널 체인 물음표를 놓았는데, 묶고자 하는 옵션값이 `buildingIndentifer` 자체가 아니라 `buildingIndentifer` 메소드의 반환값이기 때문이다.
-

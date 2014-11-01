@@ -2,9 +2,9 @@
 > Translator : FlashMaestro (masterofflash@nate.com)
 
 전통적으로 새로운 언어를 배울 때 첫번째 프로그램은 화면에 "Hello, world"란 구문을 출력해 보는 것입니다. Swift에서는 코드 한 줄로 이를 구현할 수 있습니다.
-``` 
+```
 println("Hello, world")
-```    
+```
 C나 Objective-C에서 코드를 작성해본적이 있다면 이런 문법이 매우 익숙할 것입니다. Swift에서는 이 한줄의 코드가 완전한 프로그램입니다. 입/출력이나 문자열을 다루기 위한 함수들 같은 기능들을 사용하기 위해 분리된 라이브러리를 볼러올(Import) 필요가 없습니다. 전역 범위(Global scope)에 해당하는 코드는 프로그램의 진입점(entry point)로 사용되기 때문에, main 함수는 필요하지 않습니다. 또한 모든 문장끝에 세미콜론을 쓸 필요도 없습니다.
 
 이번 장에서는 다양한 프로그래밍 과제를 어떻게 완수해 나가는지 보여주면서 Swift로 어떻게 코드를 작성해야하는지에 대한 충분한 정보를 제공할 것입니다. 몇몇가지를 이해하지 못한다고 해서 걱정하지 마세요. 이번 장에서 소개되는 모든 것들은 책의 뒷 부분에서 자세히 설명할 것입니다.
@@ -76,7 +76,7 @@ occupations["Jayne"] = "Public Relations"
 빈 배열이나 딕셔너리를 만들려면, 이니셜라이저(initializer)를 사용하면 됩니다.
 
 ```
-let emptyArray = String[]()
+let emptyArray = [String]()
 let emptyDictionary = Dictionary<String, Float>()
 ```
 
@@ -112,14 +112,14 @@ teamScore
 ```
  var optionalString: String? = "Hello"
  optionalString == nil
- 
+
  var optionalName: String? = "John Appleseed"
  var greeting = "Hello!"
  if let name = optionalName {
     greeting = "Hello, \(name)"
  }
 ```
- 
+
 > EXPERIMENT
 `optionalName`의 값을 `nil`로 바꿔보자. 어떤 greeting의 값을 받을 수 있는가? `optionalName`에 할당된 값이 `nil`일 때 다른 값을 greeting에 할당하도록 `else` 절을 추가해보자.
 
@@ -143,7 +143,7 @@ teamScore
 
 > EXPERIMENT
 switch문에서 `default` 부분을 제거해 보자. 어떤 에러가 발생하는가?
-    
+
 switch문은 case문의 조건과 일치할 때 case문 아래에 속한 코드를 실행하 switch문을 빠져나옵니다. 이후에 나오는 case문은 자동적으로 실행하지 않기 때문에 코드 끝에 break 키워드를 명시하지 않아도 됩니다.
 
 `for-in` 문을 사용하면 각각 키/값 쌍으로 사용할 수 있는 이름들의 쌍을 이용해 딕셔너리에 있는 요소들을 반복 처리할 수 있습니다.
@@ -164,10 +164,10 @@ for (kind, numbers) in interestingNumbers {
 }
 largest
 ```
- 
+
 > EXPERIMENT
 어떤 숫자가 가장 큰 수로 저장되는지 확인하기 위해 다른 변수를 추가하고, 가장 큰 수로 저장된 숫자가 무엇인지 확인해보라.
-    
+
 이번에는 조건문이 변경될 때까지 코드 블록을 반복 실행하기 위해서 `while` 문을 사용해 봅시다. 반복문이 적어도 한번은 실행될 수 있도록 보장하려면 조건문을 반복문의 끝에 작성할 수도 있습니다.
 
 ```
@@ -199,11 +199,11 @@ for var i = 0; i < 3; ++i {
 }
 secondForLoop
 ```
- 
+
 `..`을 사용해서 범위를 지정하면 제일 맨 마지막 값은 제외됩니다. 반면에 `...`을 사용하면 양쪽 끝의 값을 모두 범위에 포함하게 됩니다.
- 
+
 ## 함수(Functions)와 클로저(Closures)
- 
+
 `func`를 사용해 함수를 선언할 수 있습니다. 함수를 호출할 때 함수의 이름과 괄호안에 인자들을 넣을 수 있습니다. 매개변수의 이름과 분리해서 `>`사용해 타입 이름을 표기하면 함수 반환 값의 타입을 지정할 수 있습니다.
 
 ```
@@ -211,11 +211,11 @@ func greet(name: String, day: String) -> String {
     return "Hello \(name), today is \(day)."
 }
 greet("Bob", "Tuesday")
-```   
+```
 
 > EXPERIMENT
 매개변수 day를 제거하고 인사말에 '오늘의 특별한 점심'을 포함하도록 매개변수를 추가해보자.
-    
+
 튜플(tuple)을 사용하면 여러개의 값을 반환할 수 있습니다.
 
 ```
@@ -241,7 +241,7 @@ sumOf(42, 597, 12)
 
 > EXPERIMENT
 인자들의 평균값을 계산하는 함수를 만들어보자.
-    
+
 함수는 중첩해서 사용할 수도 있습니다. 중첩(Nested) 함수는 감싸고 있는 함수에서 선언된 변수에 접근할 수 있습니다. 코드가 길어지고 복잡해지는 함수라면 이를 정리하려고 중첩 함수를 사용할 수 있습니다.
 
 ```
@@ -272,7 +272,7 @@ increment(7)
 또 함수는 다른 함수를 인자로 받을 수 있습니다.
 
 ```
-  func hasAnyMatches(list: Int[], condition: Int -> Bool) -> Bool {
+  func hasAnyMatches(list: [Int], condition: Int -> Bool) -> Bool {
       for item in list {
           if condition(item) {
               return true
@@ -299,11 +299,11 @@ increment(7)
 
 > EXPERIMENT
 모든 홀수값에 대해 0을 반환하도록 클로저를 수정해보자.
-    
+
 클로저를 간결하게 사용하는 몇가지 옵션이 있습니다. 델리게이트(delegate)를 위한 콜백(callback)처럼 이미 클로저의 타입을 아는 경우라면 매개변수의 타입, 반환 값 타입을 모두 생략하거나 선택적으로 생략할 수 있습니다. 한 줄짜리 구문을 가진 클로저라면 구문만 가지고도 반환 타입을 추측할 수 있습니다.
 ```
 numbers.map({ number in 3 * number })
-```    
+```
 매개변수의 이름 대신에 번호로 참조하는 것은 클로저를 짧게 만드는데 특히 유용합니다. 이때 클로저는 함수의 바로 뒤에 중괄호를 이용해 인자로 전달됩니다.
 ```
 sort([1, 5, 3, 12, 2]) { $0 > $1 }
@@ -358,17 +358,17 @@ sort([1, 5, 3, 12, 2]) { $0 > $1 }
 ```
 class Square: NamedShape {
     var sideLength: Double
-    
+
     init(sideLength: Double, name: String) {
         self.sideLength = sideLength
         super.init(name: name)
         numberOfSides = 4
     }
-    
+
     func area() ->  Double {
         return sideLength * sideLength
     }
-    
+
     override func simpleDescription() -> String {
         return "A square with sides of length \(sideLength)."
     }
@@ -386,13 +386,13 @@ test.simpleDescription()
 ```
 class EquilateralTriangle: NamedShape {
     var sideLength: Double = 0.0
-    
+
     init(sideLength: Double, name: String) {
         self.sideLength = sideLength
         super.init(name: name)
         numberOfSides = 3
     }
-    
+
     var perimeter: Double {
     get {
         return 3.0 * sideLength
@@ -401,7 +401,7 @@ class EquilateralTriangle: NamedShape {
         sideLength = newValue / 3.0
     }
     }
-    
+
     override func simpleDescription() -> String {
         return "An equilateral triagle with sides of length \(sideLength)."
     }
@@ -542,7 +542,7 @@ let threeOfSpadesDescription = threeOfSpades.simpleDescription()
 > EXPERIMENT
 각 카드를 rank와 suit를 조합해서 만들어 전체 카드를 만들어 주는 메서드를 `Card`에 추가해보자.
 
-열거형 구성자의 인스턴스는 인스턴스와 함께 관련값들을 사용할 수 있습니다. 같은 열거형의 구성자의 인스턴스들은 각 인스턴스와 함께 다른 관련값을 가질 수 있습니다. 인스턴스를 만들 때 관련값을 공급할 수 있습니다. 관련값과 원본값은 다릅니다. 열거형 구성자의 원본값은 모든 인스턴스에서 같은 값(열거형을 정의할 때 지정한 값)을 갖습니다. 
+열거형 구성자의 인스턴스는 인스턴스와 함께 관련값들을 사용할 수 있습니다. 같은 열거형의 구성자의 인스턴스들은 각 인스턴스와 함께 다른 관련값을 가질 수 있습니다. 인스턴스를 만들 때 관련값을 공급할 수 있습니다. 관련값과 원본값은 다릅니다. 열거형 구성자의 원본값은 모든 인스턴스에서 같은 값(열거형을 정의할 때 지정한 값)을 갖습니다.
 
 예를 들면, 일출, 일몰 시간을 서버에 요청한다고 가정해보자. 서버는 두 시간 모두를 응답하거나 에러 정보를 응답할 수도 있다.
 
@@ -551,10 +551,10 @@ enum ServerResponse {
     case Result(String, String)
     case Error(String)
 }
- 
+
 let success = ServerResponse.Result("6:00 am", "8:09 pm")
 let failure = ServerResponse.Error("Out of cheese.")
- 
+
 switch success {
 case let .Result(sunrise, sunset):
     let serverResponse = "Sunrise is at \(sunrise) and sunset is at \(sunset)."
@@ -566,7 +566,7 @@ case let .Error(error):
 > EXPERIMENT
 `ServerResponse`에 세번째 경우를 추가하고 스위치문에도 추가해보자.
 
-스위치문의 경우의 수와 비교를 수행하기 위해 `ServerResponse`로 부터 일출, 일몰 시간 값을 어떻게 추출해 내는지 눈여겨 보자. 
+스위치문의 경우의 수와 비교를 수행하기 위해 `ServerResponse`로 부터 일출, 일몰 시간 값을 어떻게 추출해 내는지 눈여겨 보자.
 
 ## 프로토콜(Protocols)와 확장(Extensions)##
 
@@ -592,7 +592,7 @@ class SimpleClass: ExampleProtocol {
 var a = SimpleClass()
 a.adjust()
 let aDescription = a.simpleDescription
- 
+
 struct SimpleStructure: ExampleProtocol {
     var simpleDescription: String = "A simple structure"
     mutating func adjust() {
@@ -641,8 +641,8 @@ protocolValue.simpleDescription
 제네릭 함수나 타입을 만들려면 꺾쇠안에 이름을 쓰면 됩니다.
 
 ```
-func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
-    var result = ItemType[]()
+func repeat<ItemType>(item: ItemType, times: Int) -> [ItemType] {
+    var result = [ItemType]()
     for i in 0..times {
         result += item
     }
@@ -651,7 +651,7 @@ func repeat<ItemType>(item: ItemType, times: Int) -> ItemType[] {
 repeat("knock", 4)
 ```
 
-클래스, 열거형, 구조체와 마찬가지로 함수나 메서드를 제네릭 형태로 만들 수 있습니다. 
+클래스, 열거형, 구조체와 마찬가지로 함수나 메서드를 제네릭 형태로 만들 수 있습니다.
 
 ```
 // Reimplement the Swift standard library's optional type

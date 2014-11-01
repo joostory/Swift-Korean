@@ -111,7 +111,7 @@ var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 일반적인 메소드와 같은 규칙으로 가변길이의 변수도 가능하다.
 
 > 노트
-> 
+>
 > 프로토콜은 일반적인 메소드들과 같은 문법을 사용하지만 인자로 기본값을 명시할 수 없다.
 
 프로토콜에서 타입 속성을 정의할 때처럼 `class` 키워드를 타입 메소드 앞에 붙여주면 된다. 구조체나 열거형에서 구현할 때는 `static`을 붙여주면 된다.
@@ -161,7 +161,7 @@ println("And another one: \(generator.random())")
 프로토콜이 적용된 타입의 인스턴스를 변이할 수 있다고 인스턴스 메소드에 명시하려면 프로토콜 정의세ㅓ `mutating` 키워드를 추가하면 된다. 이 프로토콜이 적용된 구조체와 열거형은 요구사항을 만족한다.
 
 > 노트
-> 
+>
 > 프로토콜을 `mutating`이라고 명시하면 클래스에서 메소드를 구현할 때는 `mutating` 키워드를 쓰지 않아도 된다.
 > `mutating` 키워드는 구조체와 열거형에서만 쓰인다.
 
@@ -206,7 +206,7 @@ lightSwitch.toggle()
 사용될 수 있다.
 
 > 노트
-> 
+>
 > 프로토콜이 타입이므로 스위프트의 다른 타입(`Int`, `String`, `Double`같은)처럼 이름을 대문자(`FullyNamed`나 `RandomNumberGenerator`처럼)로 사용할 수 있다.
 
 타입으로 프로토콜을 사용하는 예제다.
@@ -275,9 +275,9 @@ class SnakesAndLadders: DiceGame {
     let finalSquare = 25
     let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
     var square = 0
-    var board: Int[]
+    var board: [Int]
     init() {
-        board = Int[](count: finalSquare + 1, repeatedValue: 0)
+        board = [Int](count: finalSquare + 1, repeatedValue: 0)
         board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
         board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
     }
@@ -368,7 +368,7 @@ game.play()
 확장에 대해 더 많은 정보는 [확장](#) 챕터에 있다.
 
 > 노트
-> 
+>
 > 확장을 타입에 추가하는 순간 이미 만들어놓은 인스턴스들에서도 프로토콜이 적용되고 일치하게 된다.
 
 예를 들어, `TextRepresentable`이라는 프로토콜은 타입을 텍스트로 표현하는 방법을 구현할 수 있다. 인스턴스의 설명이 될 수도 있고, 현재 상태의 텍스트 표현이 될 수도 있다.
@@ -391,7 +391,7 @@ extension Dice: TextRepresentable {
 
 확장은 `Dice`를 위에서 구현했던 것과 정확히 같은 방법으로 새로운 프로토콜을 적용한다. 프로토콜 이름 뒤에 콜론으로 구분해서 프로토콜의 이름을 적고 중괄호 안에 프로토콜의 요구사항들 전부를 구현하면 된다.
 
-이제 어떤 `Dice` 인스턴스들도 `TextRepresentable`로 처리할 수 있다. 
+이제 어떤 `Dice` 인스턴스들도 `TextRepresentable`로 처리할 수 있다.
 
 
 ```
@@ -437,7 +437,7 @@ println(somethingTextRepresentable.asText())
 ```
 
 > 노트
-> 
+>
 > 타입에서 요구사항을 만족했다고 자동으로 프토토콜이 적용되지는 않는다. 항상 명시적으로 프로토콜의 적용을 선언해줘야 한다.
 
 
@@ -552,7 +552,7 @@ wishHappyBirthday(birthdayPerson)
 그리고나서 `birthdayPerson`이라는 `Person`의 인스턴스를 만들어서 `wishHappyBirthday`라는 함수의 인자로 넘긴다. `Person`이 프로토콜 양쪽 다 일치하기 때문에 유효하며 `wishHappyBirthday` 함수에서 생일축하 인사를 출력할 수 있다.
 
 > 노트
-> 
+>
 > 프로토콜 합성은 새로 영구적으로 프토토콜 타입을 만드는 것이 아니다. 합성에 있는 모든 프로토콜의 요구사항을 합친 하나의 프로토콜을 임시로 만드는 것이다.
 
 
@@ -573,11 +573,11 @@ wishHappyBirthday(birthdayPerson)
 ```
 
 > 노트
-> 
+>
 > `HasArea` 프로토콜 앞에 보이듯 프로토콜 일치를 확인하기 위해서는 `@objc` 속성(attribute)을 명시해줘야한다.
 > *코코아와 Objective-C를 스위프트와 사용하기(Using Swift with Cocoa and Objective-C)*에서 설명하듯 이 속성은 Objective-C 코드에서 인식할 수 있을 것이라는 것을 명시한다.
 > Objective-C를 함께 쓰지 않더라도 프로토콜 일치를 확인하고 싶다면 `objc`를 프로토콜에 명시해줘야한다.
-> 
+>
 > `@objc` 프로토콜은 구조체나 열거형은 불가능하고 클래스에만 적용할 수 있다.
 
 `HasArea` 프로토콜과 일치하는 `Circle`과 `Country` 두가지 클래스가 있다.
