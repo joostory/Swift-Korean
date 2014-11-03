@@ -487,8 +487,8 @@ _체커_ 게임은 흑백 칸이 번갈아 있는 10 * 10 판 위에서 플레�
 `boardColors` 배열은 색상 값을 설정하기 위해 클로저를 사용하여 초기화가 됩니다.
 ```
 struct Checkerboard {
-    let boardColors: [Bool = {
-        var temporaryBoard = [Bool()
+    let boardColors: [Bool] = {
+        var temporaryBoard = [Bool]()
         var isBlack = false
         for i in 1...10 {
             for j in 1...10 {
